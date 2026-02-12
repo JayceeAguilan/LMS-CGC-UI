@@ -1,6 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
 
-    // --- Credentials ---
     var STUDENT_ID = '2300401';
     var STUDENT_PASS = 'jeysi123';
     var FACULTY_USER = 'jaycee';
