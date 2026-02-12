@@ -78,28 +78,28 @@ html {
 }
 
 .logo-img {
-  height: 80px; /* Adjust based on logo aspect ratio */
+  height: 60px; /* Reduced from 80px */
   margin-bottom: 0;
-  margin-right: 1rem;
+  margin-right: 0.8rem;
 }
 
 .institution-name {
   color: var(--cgc-maroon);
   font-weight: 700;
-  font-size: 1.5rem;
+  font-size: 1.25rem; /* Reduced from 1.5rem */
   text-transform: uppercase;
   letter-spacing: 0.5px;
   margin-top: 0;
   display: block;
-  line-height: 1.2;
+  line-height: 1.1;
 }
 
 .login-header {
   text-align: center;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.2rem; /* Reduced from 1.5rem */
   color: var(--cgc-text-dark);
   font-weight: 700;
-  font-size: 1.75rem;
+  font-size: 1.5rem; /* Reduced from 1.75rem */
 }
 
 .form-label {
@@ -109,10 +109,11 @@ html {
 }
 
 .form-control {
-  border-radius: 8px; /* Slightly rounded */
-  padding: 0.75rem 1rem;
+  border-radius: 6px;
+  padding: 0.5rem 0.8rem; /* Reduced padding */
   border: 1px solid #ced4da;
-  background-color: #ffffff; /* Explicit white bg */
+  background-color: #ffffff;
+  font-size: 0.9rem; /* Smaller font */
 }
 
 /* Input focus state */
@@ -133,8 +134,8 @@ html {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 1.5rem;
-  font-size: 0.9rem;
+  margin-bottom: 1.2rem;
+  font-size: 0.8rem; /* Reduced from 0.9rem */
 }
 
 .forgot-password {
@@ -151,12 +152,12 @@ html {
   background-color: var(--cgc-maroon);
   color: white;
   font-weight: 600;
-  padding: 0.8rem 2rem;
-  border-radius: 2rem; /* Rounded pill shape */
+  padding: 0.6rem 1.5rem; /* Reduced padding */
+  border-radius: 2rem;
   width: 100%;
   border: none;
   transition: all 0.3s ease;
-  font-size: 1.1rem;
+  font-size: 1rem; /* Reduced from 1.1rem */
 }
 
 .btn-signin:hover {
