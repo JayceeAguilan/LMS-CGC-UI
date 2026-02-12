@@ -6,6 +6,7 @@
   --cgc-gold: #d4af37; /* Metallic gold */
   --cgc-text-dark: #333333;
   --cgc-text-muted: #6c757d;
+  --radius-md: 8px; /* Defined consistent radius */
 }
 
 body,
@@ -50,24 +51,6 @@ html {
   z-index: 2;
   text-align: left;
   margin-bottom: 2rem;
-}
-
-.promo-title {
-  font-size: 3.5rem;
-  font-weight: 800; /* Extra bold */
-  color: var(--cgc-gold);
-  line-height: 1.1;
-  text-transform: uppercase;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-  margin-bottom: 0.5rem;
-}
-
-.promo-subtitle {
-  font-size: 1.5rem;
-  font-weight: 600;
-  color: #ffffff;
-  letter-spacing: 1px;
-  text-transform: uppercase;
 }
 
 /* Right Column Styling */
@@ -189,12 +172,256 @@ html {
   border-color: var(--cgc-maroon);
 }
 
+/* Toast Notification */
+.toast {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    color: white;
+    padding: 1rem 1.5rem;
+    border-radius: var(--radius-md);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    z-index: 1000;
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: opacity 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55), transform 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    pointer-events: none;
+    max-width: 350px;
+}
+
+.toast.show {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+/* Success Variant */
+.toast-success {
+    background-color: #2ecc71;
+}
+
+.toast-success .toast-icon {
+    background-color: white;
+    color: #2ecc71;
+}
+/* Error Variant */
+.toast-error {
+    background-color: #e74c3c;
+}
+
+.toast-error .toast-icon {
+    background-color: white;
+    color: #e74c3c;
+}
+
+.toast-icon {
+    flex-shrink: 0;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.toast-icon svg {
+    width: 16px;
+    height: 16px;
+    stroke-width: 3;
+}
+
+.toast-content {
+    flex-grow: 1;
+}
+
+.toast-title {
+    font-weight: 700;
+    font-size: 1rem;
+    margin-bottom: 0.25rem;
+}
+
+.toast-message {
+    font-size: 0.875rem;
+    line-height: 1.4;
+    opacity: 0.95;
+}
+
+.toast-close {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.25rem;
+    line-height: 1;
+    cursor: pointer;
+    opacity: 0.8;
+    padding: 0;
+    margin-left: 8px;
+}
+
+.toast-close:hover {
+    opacity: 1;
+}
+
+.toast-progress {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 4px;
+    background-color: rgba(255, 255, 255, 0.4);
+    width: 100%;
+    transform-origin: left;
+}
+
+.toast.show .toast-progress {
+    animation: toastProgress 3s linear forwards;
+}
+
+@keyframes toastProgress {
+    to { transform: scaleX(0); }
+}
+
+/* --- Support Modal Styles --- */
+
+/* Restrict detailed width to make it compact */
+#accountSupportModal .modal-dialog {
+  max-width: 420px;
+}
+
+.modal-content.support-modal {
+  border: none;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.support-modal .modal-header {
+  background-color: var(--cgc-maroon);
+  color: white;
+  border-bottom: none;
+  padding: 0.8rem 1.2rem;
+}
+
+.support-modal .modal-title {
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 1.1rem;
+}
+
+.support-modal .btn-close {
+  filter: invert(1) grayscale(100%) brightness(200%); /* Make CSS close button white */
+  opacity: 1;
+}
+
+.support-modal .modal-body {
+  padding: 1.25rem;
+  color: #4a4a4a;
+  font-size: 0.9rem;
+}
+
+.support-info-box {
+  background-color: #f8f9fa; /* Light gray */
+  border-radius: 8px;
+  padding: 1rem;
+  margin: 1rem 0;
+  border: 1px solid #e9ecef;
+}
+
+.support-info-box h6 {
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.9rem;
+}
+
+.support-info-box ul {
+  padding-left: 1rem;
+  margin-bottom: 0;
+}
+
+.support-info-box li {
+  margin-bottom: 0.25rem;
+  line-height: 1.4;
+  color: #555;
+  font-size: 0.85rem;
+}
+
+.text-maroon {
+  color: var(--cgc-maroon) !important;
+  font-weight: 700;
+}
+
+.btn-facebook {
+  background-color: #8B1E2F; /* Darker red matching button in image */
+  color: white;
+  font-weight: 600;
+  padding: 0.6rem 1.5rem;
+  border-radius: 6px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  transition: all 0.3s;
+  box-shadow: 0 4px 6px rgba(122, 27, 46, 0.2);
+  font-size: 0.9rem;
+}
+
+.btn-facebook:hover {
+  background-color: #6a1622;
+  color: white;
+  transform: translateY(-2px);
+}
+
+.modal-footer-text {
+  text-align: center;
+  font-size: 0.65rem;
+  color: #aaa;
+  font-weight: 700;
+  letter-spacing: 1px;
+  margin-top: 1rem;
+  text-transform: uppercase;
+}
+
 /* Responsive adjustments */
 @media (max-width: 991.98px) {
-  .promo-section {
-    display: none; /* Hide promo on mobile/tablet portrait if desired, or stack */
+  .login-container {
+    position: relative;
+    background: url('../img/image-banner-left.png') no-repeat center center/cover;
   }
+
+  /* Create an overlay for the whole page on mobile */
+  .login-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(122, 27, 46, 0.2) 0%, rgba(122, 27, 46, 0.6) 100%);
+    z-index: 1;
+  }
+
   .login-section {
+    position: relative;
+    z-index: 2;
     height: 100vh;
+    background-color: transparent; /* Make form section transparent */
+  }
+
+  .login-form-wrapper {
+    background-color: rgba(255, 255, 255, 0.95); /* White card effect */
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+  }
+
+  /* Hide the original promo column structure but keep the image as global bg */
+  .col-lg-7 {
+    display: none; 
   }
 }
