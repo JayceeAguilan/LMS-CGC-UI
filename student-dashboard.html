@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Citi Global College | Student LMS Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#ec5b13",
+                        "maroon": "#5a1212",
+                        "background-light": "#f8f6f6",
+                        "background-dark": "#221610",
+                    },
+                    fontFamily: {
+                        "display": ["Public Sans", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Public Sans', sans-serif; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .scrollbar-hide::-webkit-scrollbar { display: none; }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-800 dark:text-slate-100 min-h-screen flex">
+<!-- Sidebar Navigation -->
+<aside class="w-64 bg-maroon text-white flex flex-col h-screen sticky top-0 border-r border-maroon/20">
+<div class="p-6 flex items-center gap-3">
+<div class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center shadow-lg shadow-primary/20">
+<span class="material-symbols-outlined text-white">school</span>
+</div>
+<div class="flex flex-col">
+<span class="text-sm font-bold tracking-tight uppercase">Citi Global</span>
+<span class="text-[10px] text-primary font-semibold tracking-widest leading-none">LMS PORTAL</span>
+</div>
+</div>
+<nav class="flex-1 px-4 py-4 flex flex-col gap-1">
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl bg-primary text-white shadow-md" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="text-sm font-semibold">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-white/10 transition-colors" href="#">
+<span class="material-symbols-outlined">book_4</span>
+<span class="text-sm font-medium">Courses</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-white/10 transition-colors" href="#">
+<span class="material-symbols-outlined">calendar_today</span>
+<span class="text-sm font-medium">Calendar</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-white/10 transition-colors" href="#">
+<span class="material-symbols-outlined">grade</span>
+<span class="text-sm font-medium">Grades</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-white/10 transition-colors relative" href="#">
+<span class="material-symbols-outlined">chat_bubble</span>
+<span class="text-sm font-medium">Messages</span>
+<span class="absolute right-4 top-1/2 -translate-y-1/2 w-2 h-2 bg-primary rounded-full"></span>
+</a>
+</nav>
+<div class="p-4 border-t border-white/10">
+<div class="bg-white/5 p-4 rounded-xl border border-white/10">
+<p class="text-[10px] text-white/50 uppercase font-bold mb-2">Academic Term</p>
+<p class="text-xs font-semibold">1st Sem, 2023-2024</p>
+</div>
+<button class="w-full mt-4 flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-white/10 hover:bg-white/20 text-xs font-bold transition-all">
+<span class="material-symbols-outlined text-sm">logout</span>
+                Logout
+            </button>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 flex flex-col h-screen overflow-y-auto bg-background-light dark:bg-background-dark">
+<!-- Header -->
+<header class="h-20 border-b border-slate-200 dark:border-white/5 px-8 flex items-center justify-between sticky top-0 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md z-10">
+<div class="flex items-center gap-8 flex-1">
+<div class="relative w-full max-w-md">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">search</span>
+<input class="w-full pl-10 pr-4 py-2 rounded-xl border border-slate-200 dark:border-white/10 bg-white dark:bg-white/5 focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all text-sm outline-none" placeholder="Search courses, lessons, or grades..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="relative p-2 text-slate-500 hover:bg-slate-100 dark:hover:bg-white/5 rounded-full transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-primary rounded-full border-2 border-white dark:border-background-dark"></span>
+</button>
+<div class="h-8 w-px bg-slate-200 dark:bg-white/10 mx-2"></div>
+<div class="flex items-center gap-3">
+<div class="text-right">
+<p class="text-sm font-bold leading-none">Juan Dela Cruz</p>
+<p class="text-xs text-slate-500 dark:text-slate-400 font-medium mt-1">Student ID: 2023-0045</p>
+</div>
+<div class="w-10 h-10 rounded-full bg-slate-200 dark:bg-white/10 bg-cover bg-center ring-2 ring-primary/20" data-alt="Close up portrait of a male student" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDSuaCg3h1lIaHUx8NtnG6v9ew93Iql6cUZ8cc0qpMjyypzs7VTnyPCVzddZA_gCAQ4d9yAXgHT8Eqjs_XZbALvFmRguV-FvA6tQSZ-qsmMQYYXKTrlmknDr7WereV2rpy-Epu1RwQ0v_7_3Pv-YAe2hg-cJrRylAk-k0wSG3FOiz26OPuQ2j7PGjuNkT0asQEi4Y0MbjsZVfrsZqyIgo1zDu1xjEwLEI64pmP-fyYjXfH35iwSSMh35f5Iq83-cfLw4pouCIS7U-jG')"></div>
+</div>
+</div>
+</header>
+<!-- Dashboard Content -->
+<div class="p-8 max-w-7xl mx-auto w-full flex flex-col gap-8">
+<!-- Greeting -->
+<section class="flex flex-col gap-1">
+<h1 class="text-3xl font-black tracking-tight text-slate-900 dark:text-white">Welcome back, Juan! 👋</h1>
+<p class="text-slate-500 dark:text-slate-400">You have 3 tasks due this week. Stay focused!</p>
+</section>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+<!-- Left Column: Announcements (Formerly Course Overview) -->
+    <div class="lg:col-span-2 flex flex-col gap-6">
+        <div class="flex items-center justify-between">
+            <h2 class="text-xl font-bold flex items-center gap-2">
+                <span class="material-symbols-outlined text-primary">campaign</span>
+                Announcements
+            </h2>
+            <button class="text-sm font-bold text-primary hover:underline">Read All Announcements</button>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <!-- Announcement Card 1 -->
+            <div class="bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-xl p-6 hover:shadow-xl hover:shadow-primary/5 transition-all group relative overflow-hidden">
+                <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+                    <span class="material-symbols-outlined text-6xl text-primary">campaign</span>
+                </div>
+                <div class="relative z-10 flex flex-col h-full gap-4">
+                    <div class="flex items-start justify-between">
+                         <span class="text-[10px] text-primary bg-primary/10 px-2 py-1 rounded-md font-bold tracking-widest uppercase">Office of the Registrar</span>
+                         <span class="text-[10px] text-slate-400 font-medium">2 hours ago</span>
+                    </div>
+                    <div>
+                        <h4 class="text-lg font-bold text-slate-900 dark:text-white mb-2">Early Enrollment for 2nd Semester</h4>
+                        <p class="text-sm text-slate-500 dark:text-slate-400 leading-relaxed">The early enrollment period for the upcoming semester will start on November 15. Students are advised to clear any...</p>
+                    </div>
+                    <button class="mt-auto text-xs font-bold text-primary flex items-center gap-1 group-hover:gap-2 transition-all">
+                        Read More <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Announcement Card 2 -->
+            <div class="bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-xl p-6 hover:shadow-xl hover:shadow-primary/5 transition-all group relative overflow-hidden">
+                <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+                    <span class="material-symbols-outlined text-6xl text-slate-500">event</span>
+                </div>
+                 <div class="relative z-10 flex flex-col h-full gap-4">
+                    <div class="flex items-start justify-between">
+                         <span class="text-[10px] text-slate-600 bg-slate-100 dark:bg-slate-700/50 dark:text-slate-300 px-2 py-1 rounded-md font-bold tracking-widest uppercase">Dean's Office</span>
+                         <span class="text-[10px] text-slate-400 font-medium">Yesterday</span>
+                    </div>
+                    <div>
+                        <h4 class="text-lg font-bold text-slate-900 dark:text-white mb-2">IT Seminar Series: AI & Robotics</h4>
+                        <p class="text-sm text-slate-500 dark:text-slate-400 leading-relaxed">Mandatory attendance for all 2nd and 3rd year CS students. Refreshments will be served at the ...</p>
+                    </div>
+                    <button class="mt-auto text-xs font-bold text-primary flex items-center gap-1 group-hover:gap-2 transition-all">
+                        Read More <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Right Column: Widgets & Course Overview -->
+    <div class="flex flex-col gap-8">
+        <!-- Upcoming Deadlines -->
+        <div class="bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-xl p-6 shadow-sm">
+            <div class="flex items-center justify-between mb-6">
+                <h2 class="text-lg font-bold flex items-center gap-2">
+                    <span class="material-symbols-outlined text-primary">schedule</span>
+                    Deadlines
+                </h2>
+                <span class="text-xs bg-primary/10 text-primary font-bold px-2 py-0.5 rounded-full">3 pending</span>
+            </div>
+            <div class="space-y-4">
+                <div class="flex gap-4 p-3 rounded-xl hover:bg-slate-50 dark:hover:bg-white/5 transition-colors border-l-4 border-primary">
+                    <div class="flex flex-col items-center justify-center bg-primary/10 rounded-lg min-w-[48px] h-12 text-primary">
+                        <span class="text-xs font-bold leading-none">OCT</span>
+                        <span class="text-lg font-black leading-none">24</span>
+                    </div>
+                    <div class="flex-1 min-w-0">
+                        <h4 class="text-sm font-bold truncate">Final Project Proposal</h4>
+                        <p class="text-xs text-slate-400 mt-1">CS 202 • 11:59 PM</p>
+                    </div>
+                </div>
+                <div class="flex gap-4 p-3 rounded-xl hover:bg-slate-50 dark:hover:bg-white/5 transition-colors border-l-4 border-amber-500">
+                    <div class="flex flex-col items-center justify-center bg-amber-500/10 rounded-lg min-w-[48px] h-12 text-amber-500">
+                        <span class="text-xs font-bold leading-none">OCT</span>
+                        <span class="text-lg font-black leading-none">25</span>
+                    </div>
+                     <div class="flex-1 min-w-0">
+                        <h4 class="text-sm font-bold truncate">Ethics Case Study</h4>
+                        <p class="text-xs text-slate-400 mt-1">ETH 101 • 5:00 PM</p>
+                    </div>
+                </div>
+                <div class="flex gap-4 p-3 rounded-xl hover:bg-slate-50 dark:hover:bg-white/5 transition-colors border-l-4 border-slate-300">
+                    <div class="flex flex-col items-center justify-center bg-slate-100 dark:bg-white/10 rounded-lg min-w-[48px] h-12 text-slate-500">
+                        <span class="text-xs font-bold leading-none">OCT</span>
+                        <span class="text-lg font-black leading-none">28</span>
+                    </div>
+                     <div class="flex-1 min-w-0">
+                        <h4 class="text-sm font-bold truncate">Quiz 4: Calculus II</h4>
+                        <p class="text-xs text-slate-400 mt-1">MATH 305 • 8:00 AM</p>
+                    </div>
+                </div>
+            </div>
+            <button class="w-full mt-6 py-2.5 text-slate-500 dark:text-slate-400 font-bold text-xs border border-dashed border-slate-300 dark:border-white/10 rounded-xl hover:border-primary hover:text-primary transition-all">
+                View Calendar
+            </button>
+        </div>
+
+        <!-- Course Overview (Moved to Sidebar) -->
+        <div class="flex flex-col gap-6">
+            <div class="flex items-center justify-between">
+                <h2 class="text-lg font-bold flex items-center gap-2">
+                    <span class="material-symbols-outlined text-primary">bookmark</span>
+                    Course Overview
+                </h2>
+                <a href="#" class="text-xs font-bold text-primary hover:underline">View All</a>
+            </div>
+            <div class="flex flex-col gap-4">
+                 <!-- Course Card 1 -->
+                <div class="bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-xl overflow-hidden hover:shadow-xl hover:shadow-primary/5 transition-all group">
+                    <div class="h-24 bg-slate-100 dark:bg-maroon/20 relative overflow-hidden">
+                        <div class="absolute inset-0 bg-cover bg-center group-hover:scale-105 transition-transform duration-500" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBnAjtsuUUgUr9XpXtP7Eiymoc4AikG8aVLCPeXAyGfwLe7muu0pEPex-ENvzZE49GYr8eWsy93BZmhlvh1DUlSuBbH6Ok6vo4qHWNDcRLkBmX8q9CxPm_xu0h_gU8wiIYDUZ1krKTHDLpb9IAu_LTWxZ92nWFluBoHwmA0gSLtWTP_lwju3-o07w5TFP8s4D5XvTNXh-FsMI0LbVSpyzYt97JoaRJetXsNsLrmMlECIT3ktE6pbdIthe6LiMNXfT1A0NT-mSgO5A3T')" data-alt="Abstract code and data nodes visualization"></div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                        <span class="absolute top-3 left-3 bg-primary text-white text-[10px] font-bold px-2 py-1 rounded-md uppercase tracking-wider">Major</span>
+                    </div>
+                    <div class="p-4 flex flex-col gap-3">
+                         <div>
+                            <h3 class="font-bold text-sm text-slate-900 dark:text-white line-clamp-1">Data Structures & Algorithms</h3>
+                            <p class="text-[10px] text-slate-500 dark:text-slate-400 mt-0.5">CS 202 • Prof. Alicia Santos</p>
+                        </div>
+                        <div class="space-y-1.5">
+                            <div class="flex justify-between text-[10px] font-bold">
+                                <span class="text-slate-400">Progress</span>
+                                <span class="text-primary">75%</span>
+                            </div>
+                            <div class="w-full h-1 bg-slate-100 dark:bg-white/10 rounded-full overflow-hidden">
+                                <div class="h-full bg-primary rounded-full" style="width: 75%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Course Card 2 -->
+                <div class="bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-xl overflow-hidden hover:shadow-xl hover:shadow-primary/5 transition-all group">
+                    <div class="h-24 bg-slate-100 dark:bg-maroon/20 relative overflow-hidden">
+                        <div class="absolute inset-0 bg-cover bg-center group-hover:scale-105 transition-transform duration-500" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBYIJBJGxCUQB0r5REf7lzG5ZbKf9iCNUlwJQkCRSqJrB2NzW0YHwulB_XiyExgTx9kxYRvOx_z3-t2-_AG3MGsAukoP9cf7OR_wf809JAuyRXHHolVbAsb8R5bcmnAxPtPv7tN_YeGbllL_I_jDx834aCgFgpYUw37n2m-nUfuZcSs5BKdrQV-YU37kfeCloKhhYsnZ66lnKWqXvOyCMpDlXRA9LRf0OLF8vrXwq-8-6gEVKWZc8fdLB9Q_EKwZEeTRj5Lj863In_d')" data-alt="Philosophy scales of justice and digital binary pattern"></div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                         <span class="absolute top-3 left-3 bg-slate-600 text-white text-[10px] font-bold px-2 py-1 rounded-md uppercase tracking-wider">Elective</span>
+                    </div>
+                     <div class="p-4 flex flex-col gap-3">
+                         <div>
+                            <h3 class="font-bold text-sm text-slate-900 dark:text-white line-clamp-1">Ethics in IT Professional</h3>
+                            <p class="text-[10px] text-slate-500 dark:text-slate-400 mt-0.5">ETH 101 • Prof. Mark Veras</p>
+                        </div>
+                        <div class="space-y-1.5">
+                            <div class="flex justify-between text-[10px] font-bold">
+                                <span class="text-slate-400">Progress</span>
+                                <span class="text-primary">40%</span>
+                            </div>
+                            <div class="w-full h-1 bg-slate-100 dark:bg-white/10 rounded-full overflow-hidden">
+                                <div class="h-full bg-primary rounded-full" style="width: 40%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                 <!-- Course Card 3 -->
+                <div class="bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-xl overflow-hidden hover:shadow-xl hover:shadow-primary/5 transition-all group">
+                    <div class="h-24 bg-slate-100 dark:bg-maroon/20 relative overflow-hidden">
+                        <div class="absolute inset-0 bg-cover bg-center group-hover:scale-105 transition-transform duration-500" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuClChK8AVAYojScCmnKpTwK79zASl6xTUuODoYMoKwtGfkSnNvJNewqVSWQoS_QjDfycaHB0kIf-gIaXXVVYWGw63ziqgB1AIZIqsE05ZvmMbCniCZ7DKyP3f_f7aQiiccf6BfiFoILFeWZejd4aQgO3f2g7qYhE3nbSieUTSxRr0Dp981Krw-hXkYnkn-pcQC-mSOcoqRofwxzU7ekBvEoWB9J6p4xmHXK2OnRN9kfNR_N4yE66t62-uMCMWalIn0u98O694mP67Io')" data-alt="Advanced mathematical formulas on a chalkboard background"></div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                        <span class="absolute top-3 left-3 bg-primary text-white text-[10px] font-bold px-2 py-1 rounded-md uppercase tracking-wider">Major</span>
+                    </div>
+                     <div class="p-4 flex flex-col gap-3">
+                         <div>
+                            <h3 class="font-bold text-sm text-slate-900 dark:text-white line-clamp-1">Advanced Mathematics</h3>
+                            <p class="text-[10px] text-slate-500 dark:text-slate-400 mt-0.5">MATH 305 • Dr. Elena Cruz</p>
+                        </div>
+                        <div class="space-y-1.5">
+                             <div class="flex justify-between text-[10px] font-bold">
+                                <span class="text-slate-400">Progress</span>
+                                <span class="text-primary">90%</span>
+                            </div>
+                            <div class="w-full h-1 bg-slate-100 dark:bg-white/10 rounded-full overflow-hidden">
+                                <div class="h-full bg-primary rounded-full" style="width: 90%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Course Card 4 -->
+                 <div class="bg-maroon text-white rounded-xl p-5 flex flex-col gap-3 border border-maroon">
+                    <div class="flex items-center gap-3">
+                        <div class="p-2 bg-white/10 rounded-lg">
+                            <span class="material-symbols-outlined text-primary text-lg">add_circle</span>
+                        </div>
+                         <div>
+                            <span class="text-[10px] font-bold opacity-60 block">NEW ENROLLMENT</span>
+                            <h3 class="font-bold text-sm leading-tight">Explore Subjects</h3>
+                        </div>
+                    </div>
+                     <button class="mt-2 w-full py-2 bg-white text-maroon font-bold rounded-lg text-xs hover:bg-slate-100 transition-colors">
+                        Browse Catalog
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<!-- Floating Action Button for Help (Academic Modern Touch) -->
+<button class="fixed bottom-8 right-8 w-14 h-14 bg-maroon text-white rounded-full shadow-2xl flex items-center justify-center hover:scale-110 active:scale-95 transition-all z-20 group">
+<span class="material-symbols-outlined">support_agent</span>
+<span class="absolute right-16 bg-maroon text-white px-3 py-1.5 rounded-lg text-xs font-bold opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none whitespace-nowrap">Student Support</span>
+</button>
+</main>
+</body></html>
