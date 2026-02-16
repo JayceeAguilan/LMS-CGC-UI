@@ -60,9 +60,13 @@
   <body
     class="bg-background-light dark:bg-background-dark text-slate-800 dark:text-slate-100 min-h-screen flex"
   >
+    <!-- Mobile Sidebar Overlay -->
+    <div id="sidebar-overlay" class="fixed inset-0 bg-black/50 z-40 hidden transition-opacity opacity-0 lg:hidden" onclick="toggleSidebar()"></div>
+
     <!-- Sidebar Navigation -->
     <aside
-      class="w-64 bg-maroon text-white flex flex-col h-screen sticky top-0 border-r border-maroon/20"
+      id="sidebar"
+      class="fixed inset-y-0 left-0 z-50 w-64 bg-maroon text-white flex flex-col h-screen transition-transform transform -translate-x-full lg:translate-x-0 lg:sticky lg:top-0 border-r border-maroon/20 shadow-2xl lg:shadow-none"
     >
       <div class="p-6 flex flex-col gap-6">
         <div class="flex items-center gap-3">
@@ -86,7 +90,7 @@
            <p class="text-[10px] text-white/50 uppercase font-bold mb-1">
              Academic Term
            </p>
-           <p class="text-xs font-semibold">1st Sem, 2023-2024</p>
+           <p class="text-xs font-semibold">2nd Semester, 2025-2026</p>
          </div>
       </div>
       <nav class="flex-1 px-4 py-4 flex flex-col gap-1">
@@ -98,7 +102,7 @@
           <span class="text-sm font-semibold">Dashboard</span>
         </a>
 
-        <!-- Courses Accordion -->
+        <!-- My Classes Accordion -->
         <div class="flex flex-col rounded-xl transition-colors">
             <button
                 onclick="toggleCourses(this)"
@@ -108,7 +112,7 @@
             >
                 <div class="flex items-center gap-3">
                     <span class="material-symbols-outlined">book_4</span>
-                    <span class="text-sm font-medium">Courses</span>
+                    <span class="text-sm font-medium">My Classes</span>
                 </div>
                 <span id="courses-chevron" class="material-symbols-outlined text-sm transition-transform duration-300">expand_more</span>
             </button>
@@ -165,15 +169,15 @@
           class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-white/10 transition-colors"
           href="#"
         >
-          <span class="material-symbols-outlined">calendar_today</span>
-          <span class="text-sm font-medium">Calendar</span>
+          <span class="material-symbols-outlined">grade</span>
+          <span class="text-sm font-medium">Grades</span>
         </a>
         <a
           class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-white/10 transition-colors"
           href="#"
         >
-          <span class="material-symbols-outlined">grade</span>
-          <span class="text-sm font-medium">Grades</span>
+          <span class="material-symbols-outlined">person</span>
+          <span class="text-sm font-medium">Profile</span>
         </a>
 
       </nav>
@@ -192,10 +196,13 @@
     >
       <!-- Header -->
       <header
-        class="h-20 border-b border-slate-200 dark:border-white/5 px-8 flex items-center justify-between sticky top-0 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md z-10"
+        class="h-16 md:h-20 border-b border-slate-200 dark:border-white/5 px-4 md:px-8 flex items-center justify-between sticky top-0 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md z-30"
       >
-        <div class="flex items-center gap-8 flex-1">
-          <div class="relative w-full max-w-md">
+        <div class="flex items-center gap-4 flex-1">
+          <button onclick="toggleSidebar()" class="lg:hidden p-2 -ml-2 text-slate-500 hover:bg-slate-100 dark:hover:bg-white/5 rounded-full transition-colors">
+            <span class="material-symbols-outlined">menu</span>
+          </button>
+          <div class="relative w-full max-w-md hidden sm:block">
             <span
               class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"
               >search</span
@@ -216,143 +223,163 @@
               class="absolute top-2 right-2 w-2 h-2 bg-primary rounded-full border-2 border-white dark:border-background-dark"
             ></span>
           </button>
-          <div class="h-8 w-px bg-slate-200 dark:bg-white/10 mx-2"></div>
-          <div class="flex items-center gap-3">
-            <div class="text-right">
-              <p class="text-sm font-bold leading-none">Jaycee Aguilan</p>
-              <p
-                class="text-xs text-slate-500 dark:text-slate-400 font-medium mt-1"
-              >
-                Student ID: 2300401
-              </p>
+          <span class="hidden sm:inline-block text-[10px] font-bold uppercase tracking-widest bg-primary/10 text-primary px-2.5 py-1 rounded-md">Student</span>
+          <div class="h-8 w-px bg-slate-200 dark:bg-white/10 mx-2 hidden sm:block"></div>
+          <!-- Profile Dropdown -->
+          <div class="relative" id="profileDropdownContainer">
+            <button onclick="toggleProfileDropdown()" class="flex items-center gap-3 hover:opacity-80 transition-opacity">
+              <div class="text-right hidden sm:block">
+                <p class="text-sm font-bold leading-none">Jaycee Aguilan</p>
+                <p
+                  class="text-xs text-slate-500 dark:text-slate-400 font-medium mt-1"
+                >
+                  Student ID: 2300401
+                </p>
+              </div>
+              <div
+                class="w-10 h-10 rounded-full bg-slate-200 dark:bg-white/10 bg-cover bg-center ring-2 ring-primary/20"
+                data-alt="Close up portrait of a male student"
+                style="
+                  background-image: url(&quot;https://lh3.googleusercontent.com/aida-public/AB6AXuDSuaCg3h1lIaHUx8NtnG6v9ew93Iql6cUZ8cc0qpMjyypzs7VTnyPCVzddZA_gCAQ4d9yAXgHT8Eqjs_XZbALvFmRguV-FvA6tQSZ-qsmMQYYXKTrlmknDr7WereV2rpy-Epu1RwQ0v_7_3Pv-YAe2hg-cJrRylAk-k0wSG3FOiz26OPuQ2j7PGjuNkT0asQEi4Y0MbjsZVfrsZqyIgo1zDu1xjEwLEI64pmP-fyYjXfH35iwSSMh35f5Iq83-cfLw4pouCIS7U-jG&quot;);
+                "
+              ></div>
+              <span class="material-symbols-outlined text-slate-400 text-lg hidden sm:block">expand_more</span>
+            </button>
+            <!-- Dropdown Menu -->
+            <div id="profileDropdown" class="hidden absolute right-0 top-full mt-2 w-56 bg-white dark:bg-zinc-900 border border-slate-200 dark:border-zinc-700 rounded-xl shadow-xl py-2 z-50">
+              <div class="px-4 py-3 border-b border-slate-100 dark:border-zinc-800">
+                <p class="text-sm font-bold text-slate-900 dark:text-white">Jaycee Aguilan</p>
+                <p class="text-xs text-slate-500 mt-0.5">jaycee.aguilan@cgc.edu.ph</p>
+              </div>
+              <a href="#" class="flex items-center gap-3 px-4 py-2.5 text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-zinc-800 transition-colors">
+                <span class="material-symbols-outlined text-lg">person</span>
+                View Profile
+              </a>
+              <a href="#" class="flex items-center gap-3 px-4 py-2.5 text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-zinc-800 transition-colors">
+                <span class="material-symbols-outlined text-lg">settings</span>
+                Account Settings
+              </a>
+              <div class="border-t border-slate-100 dark:border-zinc-800 mt-1 pt-1">
+                <a href="student-login.html" class="flex items-center gap-3 px-4 py-2.5 text-sm text-red-600 hover:bg-red-50 dark:hover:bg-red-900/10 transition-colors">
+                  <span class="material-symbols-outlined text-lg">logout</span>
+                  Logout
+                </a>
+              </div>
             </div>
-            <div
-              class="w-10 h-10 rounded-full bg-slate-200 dark:bg-white/10 bg-cover bg-center ring-2 ring-primary/20"
-              data-alt="Close up portrait of a male student"
-              style="
-                background-image: url(&quot;https://lh3.googleusercontent.com/aida-public/AB6AXuDSuaCg3h1lIaHUx8NtnG6v9ew93Iql6cUZ8cc0qpMjyypzs7VTnyPCVzddZA_gCAQ4d9yAXgHT8Eqjs_XZbALvFmRguV-FvA6tQSZ-qsmMQYYXKTrlmknDr7WereV2rpy-Epu1RwQ0v_7_3Pv-YAe2hg-cJrRylAk-k0wSG3FOiz26OPuQ2j7PGjuNkT0asQEi4Y0MbjsZVfrsZqyIgo1zDu1xjEwLEI64pmP-fyYjXfH35iwSSMh35f5Iq83-cfLw4pouCIS7U-jG&quot;);
-              "
-            ></div>
           </div>
         </div>
       </header>
+      <!-- Breadcrumbs -->
+      <nav class="px-4 md:px-8 pt-4 text-xs text-slate-500 dark:text-slate-400 flex items-center gap-2">
+        <a href="student-dashboard.html" class="hover:text-primary transition-colors font-medium">Dashboard</a>
+      </nav>
       <!-- Dashboard Content -->
-      <div class="p-8 max-w-7xl mx-auto w-full flex flex-col gap-8">
+      <div class="p-4 md:p-8 max-w-7xl mx-auto w-full flex flex-col gap-6 md:gap-8">
         <!-- Greeting -->
         <section class="flex flex-col gap-1">
           <h1
             class="text-3xl font-black tracking-tight text-slate-900 dark:text-white"
           >
-            Welcome back, Juan! 👋
+            Welcome back, Jaycee! 👋
           </h1>
-          <p class="text-slate-500 dark:text-slate-400">
-            You have 3 tasks due this week. Stay focused!
-          </p>
+
         </section>
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
           <!-- Left Column: Announcements (Formerly Course Overview) -->
+          <!-- Left Column: Course Announcements -->
           <div class="lg:col-span-2 flex flex-col gap-6">
             <div class="flex items-center justify-between">
               <h2 class="text-xl font-bold flex items-center gap-2">
                 <span class="material-symbols-outlined text-primary"
                   >campaign</span
                 >
-                Announcements
+                Course Announcements
               </h2>
               <button class="text-sm font-bold text-primary hover:underline">
-                Read All Announcements
+                View All Posts
               </button>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <!-- Announcement Card 1 -->
+            <div class="flex flex-col gap-4">
+              <!-- Post Card 1 -->
               <div
-                class="bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-xl p-6 hover:shadow-xl hover:shadow-primary/5 transition-all group relative overflow-hidden"
+                class="bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-xl p-6 hover:shadow-md transition-all group"
               >
-                <div
-                  class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity"
-                >
-                  <span class="material-symbols-outlined text-6xl text-primary"
-                    >campaign</span
-                  >
+                <div class="flex items-start justify-between mb-4">
+                  <div class="flex items-center gap-3">
+                    <div
+                      class="w-10 h-10 rounded-full bg-slate-100 dark:bg-white/10 flex items-center justify-center text-primary font-bold text-sm border border-slate-200 dark:border-white/10"
+                    >
+                      AD
+                    </div>
+                    <div>
+                      <h4 class="text-sm font-bold text-slate-900 dark:text-white leading-tight">
+                        Prof. Albert Dizon
+                      </h4>
+                      <p class="text-xs text-slate-500 dark:text-slate-400">
+                        CCS102 - Computer Programming 1
+                      </p>
+                    </div>
+                  </div>
+                  <span class="text-[10px] text-slate-400 font-medium bg-slate-50 dark:bg-white/5 px-2 py-1 rounded-md">
+                    2 hours ago
+                  </span>
                 </div>
-                <div class="relative z-10 flex flex-col h-full gap-4">
-                  <div class="flex items-start justify-between">
-                    <span
-                      class="text-[10px] text-primary bg-primary/10 px-2 py-1 rounded-md font-bold tracking-widest uppercase"
-                      >Office of the Registrar</span
-                    >
-                    <span class="text-[10px] text-slate-400 font-medium"
-                      >2 hours ago</span
-                    >
-                  </div>
-                  <div>
-                    <h4
-                      class="text-lg font-bold text-slate-900 dark:text-white mb-2"
-                    >
-                      Early Enrollment for 2nd Semester
-                    </h4>
-                    <p
-                      class="text-sm text-slate-500 dark:text-slate-400 leading-relaxed"
-                    >
-                      The early enrollment period for the upcoming semester will
-                      start on November 15. Students are advised to clear any...
-                    </p>
-                  </div>
-                  <button
-                    class="mt-auto text-xs font-bold text-primary flex items-center gap-1 group-hover:gap-2 transition-all"
-                  >
-                    Read More
-                    <span class="material-symbols-outlined text-sm"
-                      >arrow_forward</span
-                    >
-                  </button>
+                
+                <h3 class="text-base font-bold text-slate-900 dark:text-white mb-2">
+                  Midterm Project Requirements
+                </h3>
+                <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
+                  Good day class! I have uploaded the requirements for your midterm project. Please check the Materials tab for the PDF file. You can start forming your groups of 3.
+                </p>
+
+                <div class="flex items-center gap-4 pt-4 border-t border-slate-100 dark:border-white/5">
+                   <button class="text-xs font-bold text-primary flex items-center gap-1 hover:underline">
+                    <span class="material-symbols-outlined text-sm">visibility</span>
+                    View Details
+                   </button>
+
                 </div>
               </div>
 
-              <!-- Announcement Card 2 -->
+              <!-- Post Card 2 -->
               <div
-                class="bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-xl p-6 hover:shadow-xl hover:shadow-primary/5 transition-all group relative overflow-hidden"
+                class="bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-xl p-6 hover:shadow-md transition-all group"
               >
-                <div
-                  class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity"
-                >
-                  <span
-                    class="material-symbols-outlined text-6xl text-slate-500"
-                    >event</span
-                  >
+                <div class="flex items-start justify-between mb-4">
+                  <div class="flex items-center gap-3">
+                    <div
+                      class="w-10 h-10 rounded-full bg-slate-100 dark:bg-white/10 flex items-center justify-center text-maroon font-bold text-sm border border-slate-200 dark:border-white/10"
+                    >
+                      EC
+                    </div>
+                    <div>
+                      <h4 class="text-sm font-bold text-slate-900 dark:text-white leading-tight">
+                        Dr. Elena Cruz
+                      </h4>
+                      <p class="text-xs text-slate-500 dark:text-slate-400">
+                        MATH 305 - Adv. Mathematics
+                      </p>
+                    </div>
+                  </div>
+                  <span class="text-[10px] text-slate-400 font-medium bg-slate-50 dark:bg-white/5 px-2 py-1 rounded-md">
+                    Yesterday
+                  </span>
                 </div>
-                <div class="relative z-10 flex flex-col h-full gap-4">
-                  <div class="flex items-start justify-between">
-                    <span
-                      class="text-[10px] text-slate-600 bg-slate-100 dark:bg-slate-700/50 dark:text-slate-300 px-2 py-1 rounded-md font-bold tracking-widest uppercase"
-                      >Dean's Office</span
-                    >
-                    <span class="text-[10px] text-slate-400 font-medium"
-                      >Yesterday</span
-                    >
-                  </div>
-                  <div>
-                    <h4
-                      class="text-lg font-bold text-slate-900 dark:text-white mb-2"
-                    >
-                      IT Seminar Series: AI & Robotics
-                    </h4>
-                    <p
-                      class="text-sm text-slate-500 dark:text-slate-400 leading-relaxed"
-                    >
-                      Mandatory attendance for all 2nd and 3rd year CS students.
-                      Refreshments will be served at the ...
-                    </p>
-                  </div>
-                  <button
-                    class="mt-auto text-xs font-bold text-primary flex items-center gap-1 group-hover:gap-2 transition-all"
-                  >
-                    Read More
-                    <span class="material-symbols-outlined text-sm"
-                      >arrow_forward</span
-                    >
-                  </button>
+                
+                <h3 class="text-base font-bold text-slate-900 dark:text-white mb-2">
+                  Quiz 4: Coverage Update
+                </h3>
+                <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
+                  Please be advised that Quiz 4 will cover Chapter 5 (Derivatives) and Chapter 6 (Integrals). Review the practice problems I sent last week.
+                </p>
+
+                <div class="flex items-center gap-4 pt-4 border-t border-slate-100 dark:border-white/5">
+                   <button class="text-xs font-bold text-primary flex items-center gap-1 hover:underline">
+                    <span class="material-symbols-outlined text-sm">visibility</span>
+                    View Details
+                   </button>
+
                 </div>
               </div>
             </div>
@@ -466,7 +493,7 @@
                       data-alt="Abstract code and data nodes visualization"
                     ></div>
                     <div
-                      class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"
+                      class="absolute inset-0 bg-black/40"
                     ></div>
                     <span
                       class="absolute top-3 left-3 bg-primary text-white text-[10px] font-bold px-2 py-1 rounded-md uppercase tracking-wider"
@@ -518,7 +545,7 @@
                       data-alt="Philosophy scales of justice and digital binary pattern"
                     ></div>
                     <div
-                      class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"
+                      class="absolute inset-0 bg-black/40"
                     ></div>
                     <span
                       class="absolute top-3 left-3 bg-slate-600 text-white text-[10px] font-bold px-2 py-1 rounded-md uppercase tracking-wider"
@@ -570,7 +597,7 @@
                       data-alt="Advanced mathematical formulas on a chalkboard background"
                     ></div>
                     <div
-                      class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"
+                      class="absolute inset-0 bg-black/40"
                     ></div>
                     <span
                       class="absolute top-3 left-3 bg-primary text-white text-[10px] font-bold px-2 py-1 rounded-md uppercase tracking-wider"
@@ -607,32 +634,6 @@
                   </div>
                 </div>
 
-                <!-- Course Card 4 -->
-                <div
-                  class="bg-maroon text-white rounded-xl p-5 flex flex-col gap-3 border border-maroon"
-                >
-                  <div class="flex items-center gap-3">
-                    <div class="p-2 bg-white/10 rounded-lg">
-                      <span
-                        class="material-symbols-outlined text-primary text-lg"
-                        >add_circle</span
-                      >
-                    </div>
-                    <div>
-                      <span class="text-[10px] font-bold opacity-60 block"
-                        >NEW ENROLLMENT</span
-                      >
-                      <h3 class="font-bold text-sm leading-tight">
-                        Explore Subjects
-                      </h3>
-                    </div>
-                  </div>
-                  <button
-                    class="mt-2 w-full py-2 bg-white text-maroon font-bold rounded-lg text-xs hover:bg-slate-100 transition-colors"
-                  >
-                    Browse Catalog
-                  </button>
-                </div>
               </div>
             </div>
           </div>
@@ -650,6 +651,25 @@
       </button>
     </main>
     <script>
+      function toggleSidebar() {
+        const sidebar = document.getElementById("sidebar");
+        const overlay = document.getElementById("sidebar-overlay");
+        
+        // Check if sidebar is currently closed (has -translate-x-full)
+        if (sidebar.classList.contains("-translate-x-full")) {
+            // Open sidebar
+            sidebar.classList.remove("-translate-x-full");
+            overlay.classList.remove("hidden");
+            // small timeout to allow display:block to apply before opacity transition
+            setTimeout(() => overlay.classList.remove("opacity-0"), 10);
+        } else {
+            // Close sidebar
+            sidebar.classList.add("-translate-x-full");
+            overlay.classList.add("opacity-0");
+            setTimeout(() => overlay.classList.add("hidden"), 300);
+        }
+      }
+
       function toggleCourses(button) {
         const list = document.getElementById("courses-list");
         const chevron = document.getElementById("courses-chevron");
@@ -669,6 +689,21 @@
           chevron.classList.add("rotate-180");
         }
       }
+
+      // Profile Dropdown
+      function toggleProfileDropdown() {
+        const dropdown = document.getElementById("profileDropdown");
+        dropdown.classList.toggle("hidden");
+      }
+
+      // Close dropdown when clicking outside
+      document.addEventListener("click", function (e) {
+        const container = document.getElementById("profileDropdownContainer");
+        const dropdown = document.getElementById("profileDropdown");
+        if (container && !container.contains(e.target)) {
+          dropdown.classList.add("hidden");
+        }
+      });
     </script>
   </body>
 </html>
