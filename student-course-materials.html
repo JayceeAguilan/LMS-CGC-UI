@@ -1,0 +1,800 @@
+<!doctype html>
+<html class="light" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Citi Global College | Course Materials</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700;900&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#ec5b13",
+              maroon: "#5a1212",
+              "brand-maroon": "#4b2038",
+              "brand-gold": "#d4af37",
+              "background-light": "#f8f6f6",
+              "background-dark": "#221610",
+            },
+            fontFamily: {
+              display: ["Public Sans", "sans-serif"],
+            },
+            borderRadius: {
+              DEFAULT: "0.25rem",
+              lg: "0.5rem",
+              xl: "0.75rem",
+              full: "9999px",
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      body {
+        font-family: "Public Sans", sans-serif;
+      }
+      .material-symbols-outlined {
+        font-variation-settings:
+          "FILL" 0,
+          "wght" 400,
+          "GRAD" 0,
+          "opsz" 24;
+      }
+      .fill-icon {
+        font-variation-settings: "FILL" 1;
+      }
+      .scrollbar-hide::-webkit-scrollbar {
+        display: none;
+      }
+      /* Custom utility for smooth chevron rotation */
+      .rotate-180 {
+        transform: rotate(180deg);
+      }
+    </style>
+  </head>
+  <body
+    class="bg-background-light dark:bg-background-dark text-slate-800 dark:text-slate-100 min-h-screen flex"
+  >
+    <!-- Mobile Sidebar Overlay -->
+    <div
+      id="sidebar-overlay"
+      class="fixed inset-0 bg-black/50 z-40 hidden transition-opacity opacity-0 lg:hidden"
+      onclick="toggleSidebar()"
+    ></div>
+
+    <!-- Sidebar Navigation -->
+    <aside
+      id="sidebar"
+      class="fixed inset-y-0 left-0 z-50 w-64 bg-maroon text-white flex flex-col h-screen transition-transform transform -translate-x-full lg:translate-x-0 lg:sticky lg:top-0 border-r border-maroon/20 shadow-2xl lg:shadow-none"
+    >
+      <div class="p-6 flex flex-col gap-6">
+        <div class="flex items-center gap-3">
+          <img
+            src="assets/img/logo.png"
+            alt="Citi Global College Logo"
+            class="w-12 h-12 object-contain bg-white rounded-full p-1.5 shadow-md"
+          />
+          <div class="flex flex-col">
+            <span class="text-sm font-bold tracking-tight uppercase"
+              >Citi Global College - SHS</span
+            >
+            <span
+              class="text-[10px] text-primary font-semibold tracking-widest leading-none"
+              >LMS PORTAL</span
+            >
+          </div>
+        </div>
+
+        <div class="bg-white/5 p-3 rounded-xl border border-white/10">
+          <p class="text-[10px] text-white/50 uppercase font-bold mb-1">
+            Academic Term
+          </p>
+          <p class="text-xs font-semibold">2nd Semester, 2025-2026</p>
+        </div>
+      </div>
+      <nav class="flex-1 px-4 py-4 flex flex-col gap-1">
+        <a
+          class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-white/10 transition-colors"
+          href="student-dashboard.html"
+        >
+          <span class="material-symbols-outlined">dashboard</span>
+          <span class="text-sm font-medium">Dashboard</span>
+        </a>
+
+        <!-- My Classes Accordion -->
+        <div class="flex flex-col rounded-xl transition-colors">
+          <button
+            onclick="toggleCourses(this)"
+            class="w-full flex items-center justify-between px-4 py-3 rounded-xl bg-primary text-white shadow-md group outline-none focus:bg-white/10"
+            aria-expanded="true"
+            aria-controls="courses-list"
+          >
+            <div class="flex items-center gap-3">
+              <span class="material-symbols-outlined">book_4</span>
+              <span class="text-sm font-semibold">My Classes</span>
+            </div>
+            <span
+              id="courses-chevron"
+              class="material-symbols-outlined text-sm transition-transform duration-300 rotate-180"
+              >expand_more</span
+            >
+          </button>
+
+          <!-- Courses List Container -->
+          <div id="courses-list" class="flex flex-col gap-1 mt-1">
+            <!-- Sample Course 1 -->
+            <a
+              href="student-course.html"
+              class="block pl-12 pr-4 py-2 rounded-lg bg-white/10 transition-colors group/item"
+            >
+              <div class="text-xs font-bold text-primary transition-colors">
+                Computer Programming 1
+              </div>
+              <div
+                class="text-[10px] text-slate-300 mt-0.5 flex justify-between items-center"
+              >
+                <span>CCS102</span>
+                <span class="opacity-70">MWF</span>
+              </div>
+            </a>
+            <!-- Sample Course 2 -->
+            <a
+              href="#"
+              class="block pl-12 pr-4 py-2 rounded-lg hover:bg-white/5 transition-colors group/item"
+            >
+              <div
+                class="text-xs font-bold text-white group-hover/item:text-primary transition-colors"
+              >
+                Computer Programming 2
+              </div>
+              <div
+                class="text-[10px] text-slate-400 mt-0.5 flex justify-between items-center"
+              >
+                <span>CCS103</span>
+                <span class="opacity-70">TTh</span>
+              </div>
+            </a>
+            <!-- Sample Course 3 -->
+            <a
+              href="#"
+              class="block pl-12 pr-4 py-2 rounded-lg hover:bg-white/5 transition-colors group/item"
+            >
+              <div
+                class="text-xs font-bold text-white group-hover/item:text-primary transition-colors"
+              >
+                Adv. Mathematics
+              </div>
+              <div
+                class="text-[10px] text-slate-400 mt-0.5 flex justify-between items-center"
+              >
+                <span>MATH 305</span>
+                <span class="opacity-70">MWF</span>
+              </div>
+            </a>
+
+            <a
+              href="#"
+              class="block pl-12 pr-4 py-2 rounded-lg hover:bg-white/5 transition-colors group/item"
+            >
+              <div
+                class="text-xs font-bold text-white group-hover/item:text-primary transition-colors"
+              >
+                Responsive Web Design
+              </div>
+              <div
+                class="text-[10px] text-slate-400 mt-0.5 flex justify-between items-center"
+              >
+                <span>ITEW1</span>
+                <span class="opacity-70">MWF</span>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <a
+          class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-white/10 transition-colors"
+          href="#"
+        >
+          <span class="material-symbols-outlined">grade</span>
+          <span class="text-sm font-medium">Grades</span>
+        </a>
+        <a
+          class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-white/10 transition-colors"
+          href="#"
+        >
+          <span class="material-symbols-outlined">person</span>
+          <span class="text-sm font-medium">Profile</span>
+        </a>
+      </nav>
+      <div class="p-4 border-t border-white/10">
+        <button
+          class="w-full mt-4 flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-white/10 hover:bg-white/20 text-xs font-bold transition-all"
+        >
+          <span class="material-symbols-outlined text-sm">logout</span>
+          Logout
+        </button>
+      </div>
+    </aside>
+    <!-- Main Content Area -->
+    <main
+      class="flex-1 flex flex-col h-screen overflow-y-auto bg-background-light dark:bg-background-dark"
+    >
+      <!-- Header -->
+      <header
+        class="h-16 md:h-20 border-b border-slate-200 dark:border-white/5 px-4 md:px-8 flex items-center justify-between sticky top-0 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md z-30"
+      >
+        <div class="flex items-center gap-4 flex-1">
+          <button
+            onclick="toggleSidebar()"
+            class="lg:hidden p-2 -ml-2 text-slate-500 hover:bg-slate-100 dark:hover:bg-white/5 rounded-full transition-colors"
+          >
+            <span class="material-symbols-outlined">menu</span>
+          </button>
+          <div class="relative w-full max-w-md hidden sm:block">
+            <span
+              class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"
+              >search</span
+            >
+            <input
+              class="w-full pl-10 pr-4 py-2 rounded-xl border border-slate-200 dark:border-white/10 bg-white dark:bg-white/5 focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all text-sm outline-none"
+              placeholder="Search courses, lessons, or grades..."
+              type="text"
+            />
+          </div>
+        </div>
+        <div class="flex items-center gap-4">
+          <button
+            class="relative p-2 text-slate-500 hover:bg-slate-100 dark:hover:bg-white/5 rounded-full transition-colors"
+          >
+            <span class="material-symbols-outlined">notifications</span>
+            <span
+              class="absolute top-2 right-2 w-2 h-2 bg-primary rounded-full border-2 border-white dark:border-background-dark"
+            ></span>
+          </button>
+          <span class="hidden sm:inline-block text-[10px] font-bold uppercase tracking-widest bg-primary/10 text-primary px-2.5 py-1 rounded-md">Student</span>
+          <div
+            class="h-8 w-px bg-slate-200 dark:bg-white/10 mx-2 hidden sm:block"
+          ></div>
+          <!-- Profile Dropdown -->
+          <div class="relative" id="profileDropdownContainer">
+            <button onclick="toggleProfileDropdown()" class="flex items-center gap-3 hover:opacity-80 transition-opacity">
+              <div class="text-right hidden sm:block">
+                <p class="text-sm font-bold leading-none">Jaycee Aguilan</p>
+                <p
+                  class="text-xs text-slate-500 dark:text-slate-400 font-medium mt-1"
+                >
+                  Student ID: 2300401
+                </p>
+              </div>
+              <div
+                class="w-10 h-10 rounded-full bg-slate-200 dark:bg-white/10 bg-cover bg-center ring-2 ring-primary/20"
+                data-alt="Close up portrait of a male student"
+                style="
+                  background-image: url(&quot;https://lh3.googleusercontent.com/aida-public/AB6AXuDSuaCg3h1lIaHUx8NtnG6v9ew93Iql6cUZ8cc0qpMjyypzs7VTnyPCVzddZA_gCAQ4d9yAXgHT8Eqjs_XZbALvFmRguV-FvA6tQSZ-qsmMQYYXKTrlmknDr7WereV2rpy-Epu1RwQ0v_7_3Pv-YAe2hg-cJrRylAk-k0wSG3FOiz26OPuQ2j7PGjuNkT0asQEi4Y0MbjsZVfrsZqyIgo1zDu1xjEwLEI64pmP-fyYjXfH35iwSSMh35f5Iq83-cfLw4pouCIS7U-jG&quot;);
+                "
+              ></div>
+              <span class="material-symbols-outlined text-slate-400 text-lg hidden sm:block">expand_more</span>
+            </button>
+            <!-- Dropdown Menu -->
+            <div id="profileDropdown" class="hidden absolute right-0 top-full mt-2 w-56 bg-white dark:bg-zinc-900 border border-slate-200 dark:border-zinc-700 rounded-xl shadow-xl py-2 z-50">
+              <div class="px-4 py-3 border-b border-slate-100 dark:border-zinc-800">
+                <p class="text-sm font-bold text-slate-900 dark:text-white">Jaycee Aguilan</p>
+                <p class="text-xs text-slate-500 mt-0.5">jaycee.aguilan@cgc.edu.ph</p>
+              </div>
+              <a href="#" class="flex items-center gap-3 px-4 py-2.5 text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-zinc-800 transition-colors">
+                <span class="material-symbols-outlined text-lg">person</span>
+                View Profile
+              </a>
+              <a href="#" class="flex items-center gap-3 px-4 py-2.5 text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-zinc-800 transition-colors">
+                <span class="material-symbols-outlined text-lg">settings</span>
+                Account Settings
+              </a>
+              <div class="border-t border-slate-100 dark:border-zinc-800 mt-1 pt-1">
+                <a href="student-login.html" class="flex items-center gap-3 px-4 py-2.5 text-sm text-red-600 hover:bg-red-50 dark:hover:bg-red-900/10 transition-colors">
+                  <span class="material-symbols-outlined text-lg">logout</span>
+                  Logout
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- Breadcrumbs -->
+      <nav class="px-4 md:px-8 pt-4 text-xs text-slate-500 dark:text-slate-400 flex items-center gap-2">
+        <a href="student-dashboard.html" class="hover:text-primary transition-colors font-medium">Dashboard</a>
+        <span class="material-symbols-outlined text-sm">chevron_right</span>
+        <a href="student-dashboard.html" class="hover:text-primary transition-colors font-medium">My Classes</a>
+        <span class="material-symbols-outlined text-sm">chevron_right</span>
+        <a href="student-course.html" class="hover:text-primary transition-colors font-medium">Computer Programming 1</a>
+        <span class="material-symbols-outlined text-sm">chevron_right</span>
+        <span class="text-slate-700 dark:text-white font-semibold">Materials</span>
+      </nav>
+
+      <!-- Course Content -->
+      <div class="p-4 md:p-8 max-w-7xl mx-auto w-full">
+        <div class="max-w-6xl mx-auto space-y-6">
+          <!-- Course Header Section -->
+          <header
+            class="bg-white dark:bg-zinc-900 rounded-xl overflow-hidden shadow-sm border border-slate-200 dark:border-zinc-800"
+          >
+            <div
+              class="h-32 bg-brand-maroon relative overflow-hidden"
+              data-alt="Abstract geometric academic pattern"
+            >
+              <div
+                class="absolute inset-0 opacity-10"
+                style="
+                  background-image: url('data:image/svg+xml,%3Csvg width=%2724%27 height=%2724%27 xmlns=%27http://www.w3.org/2000/svg%27%3E%3Ccircle cx=%272%27 cy=%272%27 r=%271%27 fill=%27rgba(255,255,255,0.3)%27/%3E%3C/svg%3E');
+                  background-size: 24px 24px;
+                "
+              ></div>
+            </div>
+            <div class="px-8 pb-6 -mt-10 relative z-10">
+              <div
+                class="flex flex-col @[600px]:flex-row @[600px]:justify-between items-end gap-4"
+              >
+                <div class="flex gap-6 items-end w-full">
+                  <div
+                    class="size-24 rounded-xl bg-white dark:bg-zinc-800 p-1 shadow-md border border-slate-100 dark:border-zinc-700"
+                  >
+                    <div
+                      class="w-full h-full rounded-lg bg-primary/10 flex items-center justify-center"
+                    >
+                      <span
+                        class="material-symbols-outlined text-4xl text-primary"
+                        >data_object</span
+                      >
+                    </div>
+                  </div>
+                  <div class="flex-1 pb-1">
+                    <h2
+                      class="text-2xl font-bold text-slate-900 dark:text-white leading-tight "
+                    >
+                      Data Structures &amp; Algorithms
+                    </h2>
+                    <p class="text-slate-500 dark:text-slate-400 font-medium">
+                      CS202 • SHS-12A • Prof. Alicia Santos
+                    </p>
+                  </div>
+                </div>
+ 
+              </div>
+              <div
+                class="mt-4 flex items-center gap-6 text-sm text-slate-500 dark:text-slate-400 border-t border-slate-100 dark:border-zinc-800 pt-4"
+              >
+                <div class="flex items-center gap-2">
+                  <span
+                    class="material-symbols-outlined text-brand-gold text-lg"
+                    >schedule</span
+                  >
+                  <span>Mon/Wed 9:00 AM - 10:30 AM</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <span
+                    class="material-symbols-outlined text-brand-gold text-lg"
+                    >location_on</span
+                  >
+                  <span>Room 402 / Online</span>
+                </div>
+              </div>
+            </div>
+          </header>
+          <!-- Navigation Tabs -->
+          <nav
+            class="flex border-b border-slate-200 dark:border-zinc-800 gap-8 px-2"
+          >
+            <a
+              class="pb-4 px-2 border-b-2 border-transparent text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 font-bold text-sm flex items-center gap-2 transition-all"
+              href="student-course.html"
+            >
+              <span class="material-symbols-outlined text-lg">feed</span> Class Home
+            </a>
+            <a
+              class="pb-4 px-2 border-b-2 border-transparent text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 font-bold text-sm flex items-center gap-2 transition-all"
+              href="student-course-outline.html"
+            >
+              <span class="material-symbols-outlined text-lg">menu_book</span>
+              Course Outline
+            </a>
+            <a
+              class="pb-4 px-2 border-b-2 border-primary text-primary font-bold text-sm flex items-center gap-2"
+              href="#"
+            >
+              <span class="material-symbols-outlined text-lg">folder</span>
+              Materials
+            </a>
+            <a
+              class="pb-4 px-2 border-b-2 border-transparent text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 font-bold text-sm flex items-center gap-2 transition-all"
+              href="student-course-activities.html"
+            >
+              <span class="material-symbols-outlined text-lg">assignment</span>
+              Activities
+            </a>
+            <a
+              class="pb-4 px-2 border-b-2 border-transparent text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 font-bold text-sm flex items-center gap-2 transition-all"
+              href="student-course-submissions.html"
+            >
+              <span class="material-symbols-outlined text-lg">upload_file</span>
+              My Submissions
+            </a>
+            <a
+              class="pb-4 px-2 border-b-2 border-transparent text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 font-bold text-sm flex items-center gap-2 transition-all"
+              href="student-course-grades.html"
+            >
+              <span class="material-symbols-outlined text-lg">grade</span>
+              Grades
+            </a>
+          </nav>
+          <!-- Workspace Layout -->
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+            <!-- Main Content: Course Materials List -->
+            <div class="lg:col-span-8 space-y-6">
+
+                <!-- Module 1 -->
+                <section class="bg-white dark:bg-zinc-900 rounded-xl border border-slate-200 dark:border-zinc-800 shadow-sm overflow-hidden">
+                    <div class="px-6 py-4 border-b border-slate-100 dark:border-zinc-800 bg-slate-50 dark:bg-white/5 flex justify-between items-center">
+                        <h3 class="text-sm font-bold text-slate-900 dark:text-white">Module 1: Introduction to Data Structures</h3>
+                        <span class="text-xs text-slate-500 font-medium">3 files</span>
+                    </div>
+                    <div class="divide-y divide-slate-100 dark:divide-zinc-800">
+                        <!-- File 1 -->
+                        <div class="p-4 flex items-center gap-4 hover:bg-slate-50 dark:hover:bg-white/5 transition-colors group cursor-pointer">
+                            <div class="size-10 rounded bg-red-500/10 flex items-center justify-center text-red-600 shrink-0">
+                                <span class="material-symbols-outlined fill-icon">picture_as_pdf</span>
+                            </div>
+                            <div class="flex-1 min-w-0">
+                                <h4 class="text-sm font-bold text-slate-900 dark:text-white truncate group-hover:text-primary transition-colors">Lecture 1: Intro to ADT</h4>
+                                <p class="text-[11px] text-slate-500 mt-0.5">Sep 01, 2023 • 2.4 MB</p>
+                            </div>
+                            <button class="p-2 text-slate-400 hover:text-primary rounded-full transition-colors">
+                                <span class="material-symbols-outlined">download</span>
+                            </button>
+                        </div>
+                        <!-- File 2 -->
+                         <div class="p-4 flex items-center gap-4 hover:bg-slate-50 dark:hover:bg-white/5 transition-colors group cursor-pointer">
+                            <div class="size-10 rounded bg-blue-500/10 flex items-center justify-center text-blue-600 shrink-0">
+                                <span class="material-symbols-outlined fill-icon">slideshow</span>
+                            </div>
+                            <div class="flex-1 min-w-0">
+                                <h4 class="text-sm font-bold text-slate-900 dark:text-white truncate group-hover:text-primary transition-colors">Lecture 1 Slides</h4>
+                                <p class="text-[11px] text-slate-500 mt-0.5">Sep 01, 2023 • 5.1 MB</p>
+                            </div>
+                            <button class="p-2 text-slate-400 hover:text-primary rounded-full transition-colors">
+                                <span class="material-symbols-outlined">download</span>
+                            </button>
+                        </div>
+                        <!-- File 3 -->
+                         <div class="p-4 flex items-center gap-4 hover:bg-slate-50 dark:hover:bg-white/5 transition-colors group cursor-pointer">
+                            <div class="size-10 rounded bg-indigo-500/10 flex items-center justify-center text-indigo-600 shrink-0">
+                                <span class="material-symbols-outlined">link</span>
+                            </div>
+                            <div class="flex-1 min-w-0">
+                                <h4 class="text-sm font-bold text-slate-900 dark:text-white truncate group-hover:text-primary transition-colors">Reading: GeeksForGeeks - ADT</h4>
+                                <p class="text-[11px] text-slate-500 mt-0.5">External Resource</p>
+                            </div>
+                             <button class="p-2 text-slate-400 hover:text-primary rounded-full transition-colors">
+                                <span class="material-symbols-outlined">open_in_new</span>
+                            </button>
+                        </div>
+                    </div>
+                </section>
+
+                 <!-- Module 2 -->
+                <section class="bg-white dark:bg-zinc-900 rounded-xl border border-slate-200 dark:border-zinc-800 shadow-sm overflow-hidden">
+                    <div class="px-6 py-4 border-b border-slate-100 dark:border-zinc-800 bg-slate-50 dark:bg-white/5 flex justify-between items-center">
+                        <h3 class="text-sm font-bold text-slate-900 dark:text-white">Module 2: Arrays and Linked Lists</h3>
+                        <span class="text-xs text-slate-500 font-medium">2 files</span>
+                    </div>
+                    <div class="divide-y divide-slate-100 dark:divide-zinc-800">
+                        <!-- File 1 -->
+                        <div class="p-4 flex items-center gap-4 hover:bg-slate-50 dark:hover:bg-white/5 transition-colors group cursor-pointer">
+                            <div class="size-10 rounded bg-red-500/10 flex items-center justify-center text-red-600 shrink-0">
+                                <span class="material-symbols-outlined fill-icon">picture_as_pdf</span>
+                            </div>
+                            <div class="flex-1 min-w-0">
+                                <h4 class="text-sm font-bold text-slate-900 dark:text-white truncate group-hover:text-primary transition-colors">Lecture 2: Arrays vs Linked Lists</h4>
+                                <p class="text-[11px] text-slate-500 mt-0.5">Sep 15, 2023 • 3.2 MB</p>
+                            </div>
+                            <button class="p-2 text-slate-400 hover:text-primary rounded-full transition-colors">
+                                <span class="material-symbols-outlined">download</span>
+                            </button>
+                        </div>
+                        <!-- File 2 -->
+                        <div class="p-4 flex items-center gap-4 hover:bg-slate-50 dark:hover:bg-white/5 transition-colors group cursor-pointer">
+                             <div class="size-10 rounded bg-purple-500/10 flex items-center justify-center text-purple-600 shrink-0">
+                                <span class="material-symbols-outlined fill-icon">code</span>
+                            </div>
+                            <div class="flex-1 min-w-0">
+                                <h4 class="text-sm font-bold text-slate-900 dark:text-white truncate group-hover:text-primary transition-colors">Source Code: LinkedList Implementation (Python)</h4>
+                                <p class="text-[11px] text-slate-500 mt-0.5">Sep 18, 2023 • 12 KB</p>
+                            </div>
+                            <button class="p-2 text-slate-400 hover:text-primary rounded-full transition-colors">
+                                <span class="material-symbols-outlined">download</span>
+                            </button>
+                        </div>
+                    </div>
+                </section>
+
+                 <!-- Module 3 -->
+                <section class="bg-white dark:bg-zinc-900 rounded-xl border border-slate-200 dark:border-zinc-800 shadow-sm overflow-hidden">
+                     <div class="px-6 py-4 border-b border-slate-100 dark:border-zinc-800 bg-slate-50 dark:bg-white/5 flex justify-between items-center">
+                        <h3 class="text-sm font-bold text-slate-900 dark:text-white">Module 3: Stacks and Queues</h3>
+                        <span class="text-xs text-slate-500 font-medium">1 file</span>
+                    </div>
+                     <div class="divide-y divide-slate-100 dark:divide-zinc-800">
+                        <!-- File 1 -->
+                        <div class="p-4 flex items-center gap-4 hover:bg-slate-50 dark:hover:bg-white/5 transition-colors group cursor-pointer">
+                            <div class="size-10 rounded bg-red-500/10 flex items-center justify-center text-red-600 shrink-0">
+                                <span class="material-symbols-outlined fill-icon">picture_as_pdf</span>
+                            </div>
+                            <div class="flex-1 min-w-0">
+                                <h4 class="text-sm font-bold text-slate-900 dark:text-white truncate group-hover:text-primary transition-colors">Lecture 3: Stacks and Queues Applications</h4>
+                                <p class="text-[11px] text-slate-500 mt-0.5">Oct 02, 2023 • 1.8 MB</p>
+                            </div>
+                            <button class="p-2 text-slate-400 hover:text-primary rounded-full transition-colors">
+                                <span class="material-symbols-outlined">download</span>
+                            </button>
+                        </div>
+                     </div>
+                </section>
+
+            </div>
+
+            <!-- Right Sidebar: Upcoming Deadlines -->
+            <aside class="lg:col-span-4 space-y-6">
+              <!-- Upcoming Deadlines Card -->
+              <section
+                class="bg-white dark:bg-zinc-900 rounded-xl border border-slate-200 dark:border-zinc-800 shadow-sm p-5"
+              >
+                <div class="flex items-center justify-between mb-6">
+                  <h3
+                    class="text-sm font-bold text-slate-900 dark:text-white uppercase tracking-widest flex items-center gap-2"
+                  >
+                    <span class="material-symbols-outlined text-primary text-xl"
+                      >event_upcoming</span
+                    >
+                    Upcoming
+                  </h3>
+                  <a
+                    class="text-xs text-primary font-bold hover:underline"
+                    href="#"
+                    >View All</a
+                  >
+                </div>
+                <div class="space-y-4">
+                  <!-- Activity 1 -->
+                  <div
+                    class="flex gap-4 p-3 rounded-lg hover:bg-slate-50 dark:hover:bg-zinc-800/50 transition-colors border border-transparent hover:border-slate-100 dark:hover:border-zinc-800"
+                  >
+                    <div
+                      class="flex flex-col items-center justify-center size-12 bg-red-50 dark:bg-red-500/10 rounded-lg shrink-0 border border-red-100 dark:border-red-500/20"
+                    >
+                      <span class="text-[10px] font-bold text-red-600 uppercase"
+                        >Oct</span
+                      >
+                      <span class="text-lg font-bold text-red-600 leading-none"
+                        >27</span
+                      >
+                    </div>
+                    <div class="flex-1 min-w-0">
+                      <h4
+                        class="text-sm font-bold text-slate-900 dark:text-white truncate"
+                      >
+                        Midterm Project Proposal
+                      </h4>
+                      <p class="text-xs text-slate-500 mt-1">
+                        Due: Friday, 11:59 PM
+                      </p>
+                      <div class="mt-2 flex items-center gap-1.5">
+                        <span
+                          class="size-2 rounded-full bg-red-500 animate-pulse"
+                        ></span>
+                        <span
+                          class="text-[10px] font-bold text-red-600 uppercase tracking-tighter"
+                          >Priority High</span
+                        >
+                      </div>
+                    </div>
+                  </div>
+                  <!-- Activity 2 -->
+                  <div
+                    class="flex gap-4 p-3 rounded-lg hover:bg-slate-50 dark:hover:bg-zinc-800/50 transition-colors border border-transparent hover:border-slate-100 dark:hover:border-zinc-800"
+                  >
+                    <div
+                      class="flex flex-col items-center justify-center size-12 bg-primary/10 rounded-lg shrink-0 border border-primary/20"
+                    >
+                      <span class="text-[10px] font-bold text-primary uppercase"
+                        >Oct</span
+                      >
+                      <span class="text-lg font-bold text-primary leading-none"
+                        >30</span
+                      >
+                    </div>
+                    <div class="flex-1 min-w-0">
+                      <h4
+                        class="text-sm font-bold text-slate-900 dark:text-white truncate"
+                      >
+                        Weekly Quiz 4
+                      </h4>
+                      <p class="text-xs text-slate-500 mt-1">
+                        Due: Monday, 9:00 AM
+                      </p>
+                      <div class="mt-2 flex items-center gap-1.5">
+                        <span class="size-2 rounded-full bg-amber-500"></span>
+                        <span
+                          class="text-[10px] font-bold text-amber-600 uppercase tracking-tighter"
+                          >Normal</span
+                        >
+                      </div>
+                    </div>
+                  </div>
+                  <!-- Activity 3 -->
+                  <div
+                    class="flex gap-4 p-3 rounded-lg hover:bg-slate-50 dark:hover:bg-zinc-800/50 transition-colors border border-transparent hover:border-slate-100 dark:hover:border-zinc-800"
+                  >
+                    <div
+                      class="flex flex-col items-center justify-center size-12 bg-slate-100 dark:bg-zinc-800 rounded-lg shrink-0"
+                    >
+                      <span
+                        class="text-[10px] font-bold text-slate-400 uppercase"
+                        >Nov</span
+                      >
+                      <span
+                        class="text-lg font-bold text-slate-400 leading-none"
+                        >05</span
+                      >
+                    </div>
+                    <div class="flex-1 min-w-0">
+                      <h4
+                        class="text-sm font-bold text-slate-900 dark:text-white truncate"
+                      >
+                        Stack Implementation Lab
+                      </h4>
+                      <p class="text-xs text-slate-500 mt-1">
+                        Due: Sunday, 11:59 PM
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <button
+                  class="w-full mt-6 py-2 border border-slate-200 dark:border-zinc-700 rounded-lg text-xs font-bold text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-zinc-800 transition-colors uppercase tracking-widest"
+                >
+                  View All Deadlines
+                </button>
+              </section>
+              <!-- Class Progress (Bonus Aesthetic Widget) -->
+              <section
+                class="bg-brand-maroon rounded-xl p-5 text-white shadow-lg border border-brand-maroon/30"
+              >
+                <h3
+                  class="text-xs font-bold uppercase tracking-widest mb-4 opacity-70"
+                >
+                  Course Progress
+                </h3>
+                <div class="flex items-center justify-between mb-2">
+                  <span class="text-2xl font-bold">45%</span>
+                  <span
+                    class="text-xs font-medium bg-white/10 px-2 py-0.5 rounded"
+                    >Week 8 of 18</span
+                  >
+                </div>
+                <div class="w-full bg-white/10 rounded-full h-2 mb-4">
+                  <div
+                    class="bg-primary h-2 rounded-full shadow-[0_0_10px_rgba(236,91,19,0.5)]"
+                    style="width: 45%"
+                  ></div>
+                </div>
+                <p class="text-[10px] leading-tight opacity-80">
+                  Keep it up! You are on track for your midterm goals. Complete
+                  2 more activities to hit 50%.
+                </p>
+              </section>
+              <!-- Quick Resources -->
+              <section
+                class="bg-white dark:bg-zinc-900 rounded-xl border border-slate-200 dark:border-zinc-800 p-5"
+              >
+                <h3
+                  class="text-xs font-bold uppercase tracking-widest text-slate-900 dark:text-white mb-4"
+                >
+                  Quick Resources
+                </h3>
+                <ul class="space-y-3">
+                  <li>
+                    <a
+                      class="flex items-center gap-3 text-xs font-medium text-slate-600 dark:text-slate-400 hover:text-primary transition-colors group"
+                      href="#"
+                    >
+                      <span
+                        class="material-symbols-outlined text-lg opacity-50 group-hover:opacity-100"
+                        >description</span
+                      >
+                      Course Syllabus
+                    </a>
+                  </li>
+
+                </ul>
+              </section>
+            </aside>
+          </div>
+        </div>
+      </div>
+
+      <!-- Floating Action Button for Help (Academic Modern Touch) -->
+      <button
+        class="fixed bottom-8 right-8 w-14 h-14 bg-maroon text-white rounded-full shadow-2xl flex items-center justify-center hover:scale-110 active:scale-95 transition-all z-20 group"
+      >
+        <span class="material-symbols-outlined">support_agent</span>
+        <span
+          class="absolute right-16 bg-maroon text-white px-3 py-1.5 rounded-lg text-xs font-bold opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none whitespace-nowrap"
+          >Student Support</span
+        >
+      </button>
+    </main>
+    <script>
+      function toggleSidebar() {
+        const sidebar = document.getElementById("sidebar");
+        const overlay = document.getElementById("sidebar-overlay");
+
+        // Check if sidebar is currently closed (has -translate-x-full)
+        if (sidebar.classList.contains("-translate-x-full")) {
+          // Open sidebar
+          sidebar.classList.remove("-translate-x-full");
+          overlay.classList.remove("hidden");
+          // small timeout to allow display:block to apply before opacity transition
+          setTimeout(() => overlay.classList.remove("opacity-0"), 10);
+        } else {
+          // Close sidebar
+          sidebar.classList.add("-translate-x-full");
+          overlay.classList.add("opacity-0");
+          setTimeout(() => overlay.classList.add("hidden"), 300);
+        }
+      }
+
+      function toggleCourses(button) {
+        const list = document.getElementById("courses-list");
+        const chevron = document.getElementById("courses-chevron");
+        const isExpanded = button.getAttribute("aria-expanded") === "true";
+
+        // Toggle aria-expanded
+        button.setAttribute("aria-expanded", !isExpanded);
+
+        // Toggle list visibility
+        if (isExpanded) {
+          list.classList.remove("flex");
+          list.classList.add("hidden");
+          chevron.classList.remove("rotate-180");
+        } else {
+          list.classList.remove("hidden");
+          list.classList.add("flex");
+          chevron.classList.add("rotate-180");
+        }
+      }
+
+      // Profile Dropdown
+      function toggleProfileDropdown() {
+        const dropdown = document.getElementById("profileDropdown");
+        dropdown.classList.toggle("hidden");
+      }
+
+      // Close dropdown when clicking outside
+      document.addEventListener("click", function (e) {
+        const container = document.getElementById("profileDropdownContainer");
+        const dropdown = document.getElementById("profileDropdown");
+        if (container && !container.contains(e.target)) {
+          dropdown.classList.add("hidden");
+        }
+      });
+    </script>
+  </body>
+</html>
